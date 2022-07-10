@@ -3,18 +3,14 @@ import qs from 'qs';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Sort, sortList } from '../components/Sort';
-
 import { useAppDispatch } from '../redux/store';
 import { selectFilter } from '../redux/filter/selector';
 import { selectPizzaData } from '../redux/pizza/selector';
 import { setCategoryId, setCurrentPage, setFilters } from '../redux/filter/slice';
 import { fetchPizzas } from '../redux/pizza/asyncActions';
 import { SearchPizzaParams } from '../redux/pizza/types';
-import Categories from '../components/Categories';
-import { PizzaBlock } from '../components/PizzaBlock';
-import Skeleton from '../components/PizzaBlock/Skeleton';
-import Pagination from '../components/Pagination';
+
+import { Categories, Sort, PizzaBlock, Skeleton, Pagination } from '../components';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -101,19 +97,19 @@ const Home: React.FC = () => {
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
   return (
-    <div className="container">
-      <div className="content__top">
+    <div className='container'>
+      <div className='content__top'>
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
         <Sort value={sort} />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className='content__title'>Все пиццы</h2>
       {status === 'error' ? (
-        <div className="content__error-info">
+        <div className='content__error-info'>
           <h2>Произошла ошибка 😕</h2>
           <p>К сожалению, не удалось получить питсы. Попробуйте повторить попытку позже.</p>
         </div>
       ) : (
-        <div className="content__items">{status === 'loading' ? skeletons : pizzas}</div>
+        <div className='content__items'>{status === 'loading' ? skeletons : pizzas}</div>
       )}
 
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />

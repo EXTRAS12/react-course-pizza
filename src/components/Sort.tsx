@@ -37,19 +37,19 @@ export const Sort: React.FC<SortPopupProps> = React.memo(({ value }) => {
   };
 
   // Скрываем окно сортировки нажатием в другую область экрана
-  React.useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const _event = event as PopupClick;
+  // React.useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     const _event = event as PopupClick;
 
-      if (sortRef.current && !_event.path.includes(sortRef.current)) {
-        setOpen(false);
-      }
-    };
+  //     if (sortRef.current && !_event.path.includes(sortRef.current)) {
+  //       setOpen(false);
+  //     }
+  //   };
 
-    document.body.addEventListener('click', handleClickOutside);
+  //   document.body.addEventListener('click', handleClickOutside);
 
-    return () => document.body.removeEventListener('click', handleClickOutside);
-  }, []);
+  //   return () => document.body.removeEventListener('click', handleClickOutside);
+  // }, []);
 
   return (
     <div ref={sortRef} className='sort'>
